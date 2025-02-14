@@ -4,7 +4,7 @@ load_testbed.py
 A tiny Flask app to point the Locust load testing tool at.
 """
 
-from flask import Flask
+from flask import Flask, request
 from random import randint
 from time import sleep
 
@@ -26,6 +26,21 @@ def random():
     delay = randint(0, 2)
     sleep(delay)
     return f"Random delay of {delay}"
+
+
+@app.route("/items")
+def items():
+    itm_rqtd = request.args["id"]
+    print(f"Item requested was {itm_rqtd}")
+    return "Items ..."
+
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if request.method == "POST":
+        return "LOGIN_POST"
+    else:
+        return "LOGIN_GET"
 
 
 if __name__ == "__main__":
