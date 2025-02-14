@@ -28,11 +28,11 @@ def random():
     return f"Random delay of {delay}"
 
 
-@app.route("/items")
-def items():
+@app.route("/item")
+def item():
     itm_rqtd = request.args["id"]
     print(f"Item requested was {itm_rqtd}")
-    return "Items ..."
+    return "Item ..."
 
 
 @app.route("/login", methods=["GET", "POST"])
